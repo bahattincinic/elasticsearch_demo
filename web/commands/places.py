@@ -18,12 +18,14 @@ def build(point):
     with reload_elasticsearch_index(**index):
         client = FoursquareClient()
         places = client.venue_search({'ll': point, 'limit': 100})
-        bulk([
-            {
-                'id': place['id'],
-                'name': place['name'],
-                'point': '%s,%s' % (place['location']['lng'], place['location']['lat']),
-                'category': place['categories'][0]['name']
-            }
-            for place in places
-        ])
+        bulk(client.normalize_places(places))
+
+
+@manager.option('-l', '--point', dest='point', default='41.0082,28.9784')
+def load(point):
+    """
+    Import more places without elasticsearch reload
+    """
+    client = FoursquareClient()
+    places = client.venue_search({'ll': point, 'limit': 100})
+    bulk(client.normalize_places(places))

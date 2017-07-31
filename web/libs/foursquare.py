@@ -32,3 +32,14 @@ class FoursquareClient(object):
         response = self._make_request(endpoint=self.urls['venue'],
                                       method='GET', params=params)
         return response['response']['venues']
+
+    def normalize_places(self, places):
+        return [
+            {
+                'id': place['id'],
+                'name': place['name'],
+                'point': '%s,%s' % (place['location']['lng'], place['location']['lat']),
+                'category': place['categories'][0]['name']
+            }
+            for place in places
+        ]
