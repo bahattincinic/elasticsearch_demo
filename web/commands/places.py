@@ -7,7 +7,7 @@ manager = Manager(usage="Foursquare Places")
 
 
 @manager.option('-l', '--point', dest='point', default='41.0082,28.9784')
-def fetch(point):
+def load(point):
     """
     Import places from Foursquare
     """
