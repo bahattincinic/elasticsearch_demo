@@ -96,3 +96,12 @@ def count(index_name, doc_type, query=None):
 
     response = es.count(index=index_name, doc_type=doc_type, body=body)
     return response.get('count', 0)
+
+
+def create(index_name, doc_type, object_id, payload):
+    es = Elasticsearch(current_app.config['ELASTICSEARCH_URL'])
+
+    return es.create(index=index_name,
+                     doc_type=doc_type,
+                     body=payload,
+                     id=object_id)

@@ -1,8 +1,10 @@
+import uuid
+
 from flask import Blueprint, render_template, redirect, url_for
 from flask import request
 from flask import current_app
 
-from libs.entities import search, remove, get
+from libs.entities import search, remove, get, create
 
 
 app_routes = Blueprint('app', __name__,
@@ -43,3 +45,25 @@ def detail(id):
         object_id=id 
     )
     return render_template('detail.html', item=item)
+
+
+@app_routes.route('/add/', methods=['GET'])
+def add_form():
+    return render_template('add.html')
+
+
+@app_routes.route('/add/', methods=['POST'])
+def save_create_form():
+    id = str(uuid.uuid4())
+    create(
+        index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
+        doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
+        object_id=id,
+        payload={
+          'id': id,
+          'category': request.form['category'],
+          'name': request.form['name'],
+          'point': request.form['point']
+        }
+    )
+    return redirect(url_for('app.list'))

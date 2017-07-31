@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Add{% endblock title %}
+
+{% block content %}
+  <div class="container" style="margin-top: 70px;">
+    <form method="post">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Point</label>
+        <input type="point" class="form-control" name="point" required>
+        <p class="help-block">Point should be: lat,lon</p>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFile">Category</label>
+        <input type="text" class="form-control" name="category" required>
+      </div>
+      <button type="submit" class="btn btn-default">Create</button>
+    </form>
+  </div>
+{% endblock content %}
