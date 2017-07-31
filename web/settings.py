@@ -12,13 +12,15 @@ class Config(object):
         'mapping': {
             'properties': {
                 'title': {
-                    'type': 'string'
+                    'type': 'string',
+                    'index' : 'not_analyzed'
                 },
                 'point': {
                     'type': 'geo_point'
                 },
                 'category': {
-                    'type': 'string'
+                    'type': 'string',
+                    'index' : 'not_analyzed'
                 }
             }
         }

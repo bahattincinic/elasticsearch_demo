@@ -18,11 +18,19 @@ def list():
     except ValueError:
         page = 1
 
+    query = None
+    category = request.args.get('category')
+    if category:
+        query = {'term': {}}
+        if category:
+            query['term']['category'] = category
+
     results = search(
       index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
       doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
       offset=(page - 1) * current_app.config['PER_PAGE'],
-      limit=current_app.config['PER_PAGE']
+      limit=current_app.config['PER_PAGE'],
+      query=query
     )
     return render_template('index.html', results=results, current_page=page)
 
