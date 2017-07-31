@@ -5,7 +5,8 @@ Demo Application for pyistanbul presentation
 ### Requirements
 
 * Python 3.5+
-
+* Elasticsearch 5+
+* Java (Elasticsearch dependency)
 
 ### Installation
 
@@ -25,6 +26,13 @@ Install Required Packages:
 (python3 is already installed as default on 16.04)
 
     $ sudo apt-get install python3-dev libpq-dev
+
+install elasticsearch
+
+    $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.tar.gz
+    $ tar -xvf elasticsearch-5.5.1.tar.gz
+    $ elasticsearch-5.5.1
+    $ ./bin/elasticsearch
 
 ### Building the Project
 
