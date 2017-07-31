@@ -50,6 +50,8 @@ install requirements
 
     $ pip install -r requirements.txt
 
+Put your Foursquare credentials in `web/settings.py`
+
 To run the project, Follow the following commands:
 
     $ cd web
