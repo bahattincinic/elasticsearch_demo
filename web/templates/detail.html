@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+  <div class="container" style="margin-top: 70px;">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><b>Name</b></td>
+          <td>{{ item.name }}</td>
+        </tr>
+        <tr>
+          <td><b>Id</b></td>
+          <td>{{ item.id }}</td>
+        </tr>
+        <tr>
+          <td><b>Category</b></td>
+          <td>{{ item.category }}</td>
+        </tr>
+        <tr>
+          <td><b>Point</b></td>
+          <td>{{ item.point }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

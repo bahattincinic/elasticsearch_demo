@@ -34,12 +34,17 @@ class FoursquareClient(object):
         return response['response']['venues']
 
     def normalize_places(self, places):
-        return [
-            {
+        results = []
+        for place in places:
+            location = place['location']
+            category = ''
+            if len(place['categories']) > 0:
+                category = place['categories'][0]['name']
+
+            results.append({
                 'id': place['id'],
                 'name': place['name'],
-                'point': '%s,%s' % (place['location']['lng'], place['location']['lat']),
-                'category': place['categories'][0]['name']
-            }
-            for place in places
-        ]
+                'point': '%s,%s' % (location['lng'], location['lat']),
+                'category': category
+            })
+        return results

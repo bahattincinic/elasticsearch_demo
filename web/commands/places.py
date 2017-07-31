@@ -18,7 +18,11 @@ def build(point):
     with reload_elasticsearch_index(**index):
         client = FoursquareClient()
         places = client.venue_search({'ll': point, 'limit': 100})
-        bulk(client.normalize_places(places))
+        bulk(
+            index_name=index['index_name'],
+            doc_type=index['doc_type'],
+            bulk_list=client.normalize_places(places)
+        )
 
 
 @manager.option('-l', '--point', dest='point', default='41.0082,28.9784')

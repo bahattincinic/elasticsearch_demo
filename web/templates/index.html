@@ -1,5 +1,52 @@
 {% extends "base.html" %}
 
+{% block title %}List{% endblock title %}
+
 {% block content %}
-  
+  <div class="container" style="margin-top: 70px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Point</th>
+          <th>Category</th>
+          <th>Detail</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for place in results.hits %}
+          <tr>
+            <td>#{{ place.id }}</td>
+            <td>{{ place.name }}</td>
+            <td>{{ place.point }}</td>
+            <td>{{ place.category }}</td>
+            <td><a href="{{ url_for('app.detail', id=place.id) }}">Detail</a></td>
+            <td><a href="{{ url_for('app.delete_place', id=place.id) }}">Delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <nav>
+      <ul class="pager">
+        {% if current_page == 1 %}
+          <li class="prev disabled" style="float:left"><a>&laquo;</a></li>
+        {% else %}
+          <li class="prev" style="float:left">
+              <a href="?page={{ current_page - 1 }}">&laquo;</a>
+          </li>
+        {% endif %}
+
+        {% if current_page == results.total %}
+          <li class="next disabled"><a>&laquo;</a></li>
+        {% else %}
+          <li class="next">
+              <a href="?page={{ current_page + 1 }}">&laquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
 {% endblock content %}

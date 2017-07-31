@@ -4,6 +4,7 @@ class Config(object):
     FOURSQUARE_CLIENT_SECRET = 'OCXEGH4HK4XDPM0SAKSXQJBWJYRNMF5KF55KOH4KUPPP224J'
     ELASTICSEARCH_URL = '127.0.0.1:9200'
     ELASTICSEARCH_NUMBER_OF_SHARDS = 5
+    PER_PAGE = 25
     ELASTICSEARCH_NUMBER_OF_REPLICAS = 1
     ELASTICSEARCH_INDEX = {
         'index_name': 'places',
@@ -26,4 +27,3 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SERVER_NAME = '0.0.0.0:5000'

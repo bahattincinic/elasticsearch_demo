@@ -20,8 +20,8 @@ def create_indice(es, index_name, doc_type, mapping):
 
     index_settings = {
         'settings': {
-            'number_of_shards': current_app['config']['ELASTICSEARCH_NUMBER_OF_SHARDS'],
-            'number_of_replicas': current_app['config']['ELASTICSEARCH_NUMBER_OF_REPLICAS']
+            'number_of_shards': current_app.config['ELASTICSEARCH_NUMBER_OF_SHARDS'],
+            'number_of_replicas': current_app.config['ELASTICSEARCH_NUMBER_OF_REPLICAS']
         }
     }
 
@@ -54,4 +54,4 @@ def reload_elasticsearch_index(index_name, doc_type, mapping):
     create_indice(es, index_name, doc_type, mapping)
     yield index_name
     # refresh
-    refresh()
+    refresh(es)
