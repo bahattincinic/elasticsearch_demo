@@ -12,7 +12,7 @@ manager = Manager(usage="Foursquare Places")
 @manager.option('-l', '--point', dest='point', default='41.0082,28.9784')
 def build(point):
     """
-    Import places from Foursquare
+    Reload Elasticsearch & Import places from Foursquare
     """
     index = current_app.config['ELASTICSEARCH_INDEX']
     with reload_elasticsearch_index(**index):
