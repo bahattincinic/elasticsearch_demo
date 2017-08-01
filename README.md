@@ -2,6 +2,8 @@
 
 Demo Application for pyistanbul presentation
 
+**Presentation:** http://slides.com/bahattincinic/elasticsearch-for-python-developers#/
+
 ### Requirements
 
 * Python 3.5+
