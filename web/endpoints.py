@@ -26,11 +26,11 @@ def list():
             query['term']['category'] = category
 
     results = search(
-      index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
-      doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
-      offset=(page - 1) * current_app.config['PER_PAGE'],
-      limit=current_app.config['PER_PAGE'],
-      query=query
+        index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
+        doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
+        offset=(page - 1) * current_app.config['PER_PAGE'],
+        limit=current_app.config['PER_PAGE'],
+        query=query
     )
     return render_template('index.html', results=results, current_page=page)
 
@@ -40,7 +40,7 @@ def delete_place(id):
     remove(
         index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
         doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
-        object_id=id 
+        object_id=id
     )
     return redirect(url_for('app.list'))
 
@@ -50,7 +50,7 @@ def detail(id):
     item = get(
         index_name=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
         doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
-        object_id=id 
+        object_id=id
     )
     return render_template('detail.html', item=item)
 
@@ -68,10 +68,10 @@ def save_create_form():
         doc_type=current_app.config['ELASTICSEARCH_INDEX']['index_name'],
         object_id=id,
         payload={
-          'id': id,
-          'category': request.form['category'],
-          'name': request.form['name'],
-          'point': request.form['point']
+            'id': id,
+            'category': request.form['category'],
+            'name': request.form['name'],
+            'point': request.form['point']
         }
     )
     return redirect(url_for('app.list'))
